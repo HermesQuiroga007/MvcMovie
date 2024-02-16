@@ -1,0 +1,108 @@
+﻿@model MvcMovie.Models.MovieGenreViewModel;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="display:flex; align-items:center;gap:1cm; padding-top:30px; padding-bottom:30px; justify-content:center;">
+    <h1><strong>The best movies</strong></h1>
+    <h5 style="margin:-11px;"><strong>❯❯❯</strong></h5>
+    <a class="btn btn-outline-info" asp-action="Create">Create New movie</a>
+</div>
+
+<div style="text-align:center; justify-content:center;">
+    <form asp-controller="Movies" asp-action="Index" method="get" class="input-group">
+        <div style="display:flex;gap:4px;padding-bottom:27px;width:10cm;margin:auto;color:black;">
+            <input type="text" asp-for="SearchString" class="form-control" placeholder="Type" style="border:1px solid black;">
+
+            <div class="input-group-append">
+                <button class="btn btn-outline-dark" type="submit" value="Filter">Filter</button>
+            </div>
+            
+            <select id="genreSelect" class="btn btn-outline-dark btn-sm dropdown-toggle" asp-for="MovieGenre" asp-items="Model.Genres">
+                <option value="">Genres</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Obtener el elemento select
+    var selectElement = document.getElementById("genreSelect");
+
+    // Agregar un event listener para el cambio de selección
+    selectElement.addEventListener("change", function () {
+        // Obtener el valor seleccionado
+        var selectedGenre = this.value;
+
+        // Redireccionar a la página del género seleccionado
+        if (selectedGenre) {
+            window.location.href = "/Movies/Index?MovieGenre=" + selectedGenre;
+        } else {
+            // Si no se selecciona ningún género, redirigir a la página principal
+            window.location.href = "/Movies/Index";
+        }
+    });
+    
+</script>
+
+@if (!string.IsNullOrEmpty(ViewData["Message"] as string))
+{
+    <strong>
+        <div class="alert alert-info" role="alert">
+            @ViewData["Message"]
+        </div>
+    </strong>
+}
+else
+{
+<table class="table" style="text-align:center;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies![0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies![0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies![0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies![0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies![0].Rating)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movies!)
+        {
+            <tr style="text-align: center;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    <a class="btn btn-outline-success btn-sm" asp-action="Edit" asp-route-id="@item.Id"> Edit </a>  
+                    <a class="btn btn-outline-warning btn-sm" asp-action="Details" asp-route-id="@item.Id"> Details </a>
+                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

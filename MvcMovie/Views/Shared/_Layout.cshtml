@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MvcMovie.styles.css" asp-append-version="true" />
+    <link rel="icon" href="https://cdn.icon-icons.com/icons2/282/PNG/512/film-icon_30381.png" type="image/x-icon">
+
+</head>
+
+<body style="background-position:center; background-size:cover; background-repeat:no-repeat; background-color:  background: rgb(72,207,173);
+background: linear-gradient(50deg, rgba(72,207,173,1) 0%, rgba(72,207,173,1) 5%, rgba(255,255,255,1) 5%, rgba(255,255,255,1) 7%, rgba(72,207,173,1) 7%, rgba(72,207,173,1) 9%, rgba(255,255,255,1) 9%, rgba(255,255,255,1) 90%, rgba(72,207,173,1) 90%, rgba(72,207,173,1) 92%, rgba(255,255,255,1) 92%, rgba(255,255,255,1) 94%, rgba(72,207,173,1) 94%, rgba(72,207,173,1) 100%);  ;">
+    
+
+        <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light mb-3" style="box-shadow: 0 7px 20px 0 #48cfad;padding:17px; background-color: background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 20%, rgba(250,254,253,1) 30%, rgba(212,244,236,1) 40%, rgba(176,235,220,1) 50%, rgba(155,229,211,1) 60%, rgba(128,222,199,1) 70%, rgba(107,217,189,1) 80%, rgba(91,213,182,1) 90%, rgba(72,207,173,1) 100%); ; ">
+                <div class="container-fluid" style="margin-left:10px;margin-right:10px;">
+                <img href="" src="https://cdn.icon-icons.com/icons2/282/PNG/512/film-icon_30381.png" width="50" height="50" style="margin-right:21px;" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color:#48CFAD;"><strong>App de peliculas</strong></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Movies" asp-action="Index" style="padding-top: 3mm;">Movies</a>
+                            </li>
+                        </ul>
+                    </div>
+                
+                </div>
+            
+        </nav>
+
+        </header>
+
+
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>
